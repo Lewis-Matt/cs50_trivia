@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            // TODO: Add code to check answers to questions
+
+            // Run the script once DOM is loaded (to make sure all elements are loaded before we change)
+            document.addEventListener('DOMContentLoaded', function()
+            {
+                // When the correct answer is clicked, change color to green
+                // Select the button with the class of correct, and store in 'correct' var
+                let correct = document.querySelector('.correct');
+                // When the button is clicked, we run the embeded code
+                correct.addEventListener('click', function()
+                {
+                    // change color to green
+                    correct.style.backgroundColor = 'green';
+                    // Find the element whose id is feedback one, update the text (currently empty) to Correct!
+                    document.querySelector('#feedback1').innerHTML = 'Correct!';
+                });
+
+                // When any incorrect answer is clicked, change to red
+                // querySelectorAll as there are multiple incorrect answers, which returns an array of all of the
+                // matches for any element with a class of 'incorrect'
+                let incorrect = document.querySelectorAll('.incorrect');
+                // for each incorrect options...
+                for (let i = 0; i< incorrect.length; i++)
+                {
+                    // when incorrect button is clicked, run function
+                    incorrect[i].addEventListener('click', function()
+                    {
+                        // change color to red
+                        incorrect[i].style.backgroundColor = 'red';
+                        // Find elemenet whose feedback is 1, change text to Incorrect
+                        document.querySelector('#feedback1').innerHTML = 'Incorrect';
+                    });
+                }
+
+                // TODO: Check free response submission
+                // When the button is clicked, run function
+                document.querySelector('#check').addEventListener('click', function()
+                {
+                    // Give JS access to input field
+                    let input = document.querySelector('input');
+                    // I can access the value property of the input (what the user typed), if correct...
+                    if (input.value === 'junior mint')
+                    {
+                        input.style.backgroundColor = 'green';
+                        // Access feedback2 id, anc change empty text to correct
+                        document.querySelector('#feedback2').innerHTML = 'Correct!';
+                    }
+                    else
+                    {
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#feedback2').innerHTML = 'Incorrect';
+                    }
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>In the show, "Seinfeld," what is the name of Jerry's favorite shirt?</h3>
+                <button class="incorrect">Baby Blue</button>
+                <button class="incorrect">Puffy Shirt</button>
+                <button class="correct">Golden Boy</button>
+                <button class="incorrect">Cosmo</button>
+
+                <p id="feedback1"></p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>During surgery, what candy is accidentally dropped into Elaine’s boyfriend’s open abdomen?</h3>
+                <label>Answer:</label>
+                <input type = "text" value = ' use lowercase'></input>
+                <button id="check">Check Answer</button>
+
+                <p id="feedback2"></p>
+
+            </div>
+
+        </div>
+    </body>
+</html>
